@@ -15,6 +15,54 @@ The project is developed and tested using the Wokwi simulator.
 - **MQ-2 Sensor:** Provides analog readings associated with smoke and combustible gases.
 - **2.8-Inch TFT Touchscreen:** Displays environmental readings, system status, and the monitoring interface.
 
+## 1. ESP32 + MQ-2 GAS/SMOKE SENSOR
+
+MQ-2 AO → ESP32 GPIO 4
+MQ-2 DO → ESP32 GPIO 5
+MQ-2 VCC → 5V (if required by the module)
+MQ-2 GND → ESP32 GND
+
+Note: Protect ESP32 inputs from voltages above 3.3V. Use a voltage divider or level shifter where necessary.
+
+## 2. ESP32 + DHT22 TEMPERATURE/HUMIDITY SENSOR
+
+DHT22 DATA → ESP32 GPIO 6
+DHT22 VCC → ESP32 3V3
+DHT22 GND → ESP32 GND
+
+Add a 4.7kΩ–10kΩ pull-up resistor between DATA and 3V3 if the sensor module does not already have one.
+
+## 3. ESP32 + ILI9341 TFT DISPLAY (SPI)
+
+TFT CS → ESP32 GPIO 10
+TFT DC → ESP32 GPIO 9
+TFT MOSI → ESP32 GPIO 11
+TFT SCK/CLK → ESP32 GPIO 12
+TFT GND → ESP32 GND
+TFT VCC → According to the display module's specifications
+TFT RST → According to the display module's specifications
+TFT MISO → Not used by the current code
+
+## 4. ESP32 + FT6206 TOUCH CONTROLLER (I²C)
+
+Touch SDA → ESP32 GPIO 15
+Touch SCL → ESP32 GPIO 14
+Touch VCC → 3V3 (if specified for the module)
+Touch GND → ESP32 GND
+
+## 5. WI-FI
+
+Wi-Fi name → Wokwi-GUEST
+Wi-Fi password → Leave blank
+Time zone → UTC+1 (Nigeria) change to your current location 
+
+## 6. IMPORTANT NOTES
+
+1. Connect all component grounds together.
+2. Check the exact ESP32 board model before using these GPIO assignments.
+3. GPIO 6, 9, 10 and 11 are connected to internal flash on the classic ESP32-WROOM-32 and must not be used as ordinary GPIOs on that board.
+4. The MQ-2 readings and alarm thresholds must be calibrated for real hardware.
+5. This prototype is for demonstration and must not be relied on as a certified fire or gas safety system.
 ## Features
 
 - Real-time temperature and humidity monitoring.
